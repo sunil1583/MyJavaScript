@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>First JavaScript</title>
+    <script>
+      // This is a simple JavaScript code block
+      console.log("Hello, World! This is Internal JS");
+      function myFun(param) {
+        document.getElementById("demo").innerHTML =
+          "JavaScript is fun!" + param;
+        let a = ["red", "green", "blue", 2, 3];
+        console.log(a);
+        console.error("This is an error message");
+        console.warn("This is a warning message");
+        console.info("This is an info message");
+        console.assert(
+          2 === 3,
+          "This assertion failed because 2 is not equal to 3",
+        );
+        console.table(a);
+        console.table([
+          { name: "Alice", age: 30 },
+          { name: "Bob", age: 25 },
+        ]);
+        let num = 18;
+        console.log(num === 18 ? "Number is 18" : "Number is not 18");
+
+        if (num > 10) {
+          console.log("Number is greater than 10");
+        } else if (num === 10) {
+          console.log("Number is equal to 10");
+        } else {
+          console.log("Number is less than 10");
+        }
+        const add = (x, y) => x + y;
+        console.log("Sum of 5 and 3 is: " + add(5, 3));
+
+        fetchData()
+          .then(() => {
+            console.log("Data fetching completed");
+          })
+          .catch((error) => {
+            console.error("Error in fetchData:", error);
+          })
+          .finally(() => {
+            console.log("fetchData execution finished");
+          });
+      }
+      async function fetchData() {
+        try {
+          let response = await fetch(
+            "https://jsonplaceholder.typicode.com/posts/1",
+          );
+          let data = await response.json();
+          console.log("Fetched Data:", data);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+        console.log("Sum of 1, 2, 3 is: " + sum(1, 2, 3));
+        const num = [1, 2, 3, 4, 5];
+        num.forEach((n) => console.log(n * 2));
+
+        const array = ["a", "b", "c"];
+        array.iterator = function* () {
+          for (let i = 0; i < this.length; i++) {
+            yield this[i];
+          }
+        };
+        for (let value of array) {
+          console.log(value);
+        }
+      }
+      function sum(...numbers) {
+        return numbers.reduce((acc, num) => acc + num, 0);
+      }
+    </script>
+    <script src="myJs.js"></script>
+  </head>
+  <body>
+    <h1>My First JavaScript</h1>
+    <p id="demo">Click the button to see the magic!</p>
+    <button id="myFunButton" onclick="myFun('Hello')">Click Me</button>
+    <button id="myJsFunButton" onclick="myJsFun()">Click Me Js</button>
+  </body>
+</html>
